@@ -9,6 +9,5 @@ import java.util.List;
 @Repository
 public interface CotizacionRep extends JpaRepository<Cotizacion, Long> {
 
-    // Métodos de búsqueda personalizados
     List<Cotizacion> findByEstado(String estado);
 }

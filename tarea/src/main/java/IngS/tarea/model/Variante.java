@@ -14,10 +14,10 @@ public class Variante {
     private Long id;
 
     @Column(name = "nombre_variante", nullable = false, length = 100)
-    private String nombreVariante; // barniz premium, cojines de seda, ruedas, normal
+    private String nombreVariante;
 
     @Column(name = "precio_adicional", nullable = false, precision = 10, scale = 2)
-    private BigDecimal precioAdicional; // Precio que se suma al precio base del mueble
+    private BigDecimal precioAdicional;
 
     @Column(name = "descripcion", length = 255)
     private String descripcion;
@@ -25,7 +25,6 @@ public class Variante {
     @OneToMany(mappedBy = "variante", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DetalleCotizacion> detallesCotizacion;
 
-    // Constructores
     public Variante() {
     }
 

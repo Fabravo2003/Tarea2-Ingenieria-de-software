@@ -9,7 +9,6 @@ import java.util.List;
 @Repository
 public interface MuebleRep extends JpaRepository<Mueble, Long> {
 
-    // Métodos de búsqueda personalizados
     List<Mueble> findByEstado(String estado);
 
     List<Mueble> findByTipo(String tipo);

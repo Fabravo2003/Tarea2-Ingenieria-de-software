@@ -9,6 +9,5 @@ import java.util.List;
 @Repository
 public interface DetalleCotizacionRep extends JpaRepository<DetalleCotizacion, Long> {
 
-    // Método para buscar detalles por cotización
     List<DetalleCotizacion> findByCotizacionId(Long cotizacionId);
 }

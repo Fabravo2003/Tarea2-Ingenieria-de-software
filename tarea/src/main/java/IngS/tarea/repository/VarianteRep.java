@@ -9,6 +9,5 @@ import java.util.Optional;
 @Repository
 public interface VarianteRep extends JpaRepository<Variante, Long> {
 
-    // Método para buscar variante por nombre
     Optional<Variante> findByNombreVariante(String nombreVariante);
 }

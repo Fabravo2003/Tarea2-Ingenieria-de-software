@@ -1,0 +1,1265 @@
+{
+	"info": {
+		"_postman_id": "muebleria-api-collection",
+		"name": "API Mueblería - Sistema Completo",
+		"description": "Colección completa de pruebas para la API REST de Mueblería 'Los Muebles Hermanos S.A'\n\nFuncionalidades:\n- CRUD de Muebles\n- Gestión de Variantes de Precio\n- Gestión de Cotizaciones\n- Confirmación de Ventas con control de stock\n\nAutor: Fabián Alejandro Bravo Olguín\nIngeniería de Software - Sección 1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Muebles (CRUD)",
+			"item": [
+				{
+					"name": "Crear Mueble",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombreMueble\": \"Silla Moderna\",\n    \"tipo\": \"silla\",\n    \"precioBase\": 150.00,\n    \"stock\": 20,\n    \"tamanio\": \"Mediano\",\n    \"material\": \"Madera\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/muebles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"muebles"
+							]
+						},
+						"description": "Crea un nuevo mueble en el catálogo con todos sus atributos."
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Mesa",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombreMueble\": \"Mesa de Comedor\",\n    \"tipo\": \"mesa\",\n    \"precioBase\": 450.00,\n    \"stock\": 10,\n    \"tamanio\": \"Grande\",\n    \"material\": \"Roble\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/muebles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"muebles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Sillón",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombreMueble\": \"Sillón Ejecutivo\",\n    \"tipo\": \"sillon\",\n    \"precioBase\": 350.00,\n    \"stock\": 15,\n    \"tamanio\": \"Grande\",\n    \"material\": \"Cuero\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/muebles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"muebles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Todos los Muebles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/muebles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"muebles"
+							]
+						},
+						"description": "Retorna todos los muebles (activos e inactivos)"
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Muebles Activos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/muebles/activos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"muebles",
+								"activos"
+							]
+						},
+						"description": "Retorna solo muebles con estado 'activo'"
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Mueble por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/muebles/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"muebles",
+								"1"
+							]
+						},
+						"description": "Busca un mueble específico por su ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Muebles por Tipo (silla)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/muebles/tipo/silla",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"muebles",
+								"tipo",
+								"silla"
+							]
+						},
+						"description": "Busca todos los muebles de un tipo específico"
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Mueble",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"precioBase\": 175.00,\n    \"stock\": 25\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/muebles/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"muebles",
+								"1"
+							]
+						},
+						"description": "Actualiza los atributos de un mueble existente"
+					},
+					"response": []
+				},
+				{
+					"name": "Verificar Stock",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/muebles/1/stock/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"muebles",
+								"1",
+								"stock",
+								"5"
+							]
+						},
+						"description": "Verifica si hay stock suficiente para una cantidad específica"
+					},
+					"response": []
+				},
+				{
+					"name": "Desactivar Mueble (Soft Delete)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/muebles/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"muebles",
+								"1"
+							]
+						},
+						"description": "Desactiva un mueble (cambia estado a 'inactivo', no lo elimina)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2. Variantes de Precio",
+			"item": [
+				{
+					"name": "Crear Variante Normal",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombreVariante\": \"normal\",\n    \"precioAdicional\": 0.00,\n    \"descripcion\": \"Sin variante - precio estándar\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/variantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"variantes"
+							]
+						},
+						"description": "Crea la variante 'normal' sin costo adicional"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Variante Barniz Premium",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombreVariante\": \"barniz premium\",\n    \"precioAdicional\": 50.00,\n    \"descripcion\": \"Barniz de alta calidad con acabado brillante\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/variantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"variantes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Variante Cojines de Seda",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombreVariante\": \"cojines de seda\",\n    \"precioAdicional\": 75.00,\n    \"descripcion\": \"Cojines premium de seda italiana\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/variantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"variantes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Variante Ruedas",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombreVariante\": \"ruedas\",\n    \"precioAdicional\": 30.00,\n    \"descripcion\": \"Ruedas giratorias de alta resistencia\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/variantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"variantes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Todas las Variantes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/variantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"variantes"
+							]
+						},
+						"description": "Retorna todas las variantes disponibles"
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Variante por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/variantes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"variantes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Variante por Nombre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/variantes/nombre/barniz premium",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"variantes",
+								"nombre",
+								"barniz premium"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Variante Normal",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/variantes/normal",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"variantes",
+								"normal"
+							]
+						},
+						"description": "Obtiene la variante 'normal' (sin costo adicional)"
+					},
+					"response": []
+				},
+				{
+					"name": "Calcular Precio con Variante",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/variantes/calcular-precio?precioBase=150.00&varianteId=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"variantes",
+								"calcular-precio"
+							],
+							"query": [
+								{
+									"key": "precioBase",
+									"value": "150.00",
+									"description": "Precio base del mueble"
+								},
+								{
+									"key": "varianteId",
+									"value": "2",
+									"description": "ID de la variante (opcional)"
+								}
+							]
+						},
+						"description": "Calcula el precio final aplicando una variante al precio base"
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Variante",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"precioAdicional\": 55.00,\n    \"descripcion\": \"Barniz premium mejorado\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/variantes/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"variantes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Variante",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/variantes/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"variantes",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3. Cotizaciones",
+			"item": [
+				{
+					"name": "Crear Cotización Nueva",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cotizacion",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cotizacion"
+							]
+						},
+						"description": "Crea una cotización vacía con estado 'pendiente'"
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar Mueble a Cotización",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"muebleId\": 1,\n    \"varianteId\": 2,\n    \"cantidad\": 3\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/cotizacion/1/agregar-mueble",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cotizacion",
+								"1",
+								"agregar-mueble"
+							]
+						},
+						"description": "Agrega un mueble con variante y cantidad a una cotización existente"
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar Segundo Mueble",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"muebleId\": 2,\n    \"varianteId\": 1,\n    \"cantidad\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/cotizacion/1/agregar-mueble",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cotizacion",
+								"1",
+								"agregar-mueble"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Cotización por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cotizacion/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cotizacion",
+								"1"
+							]
+						},
+						"description": "Obtiene una cotización con todos sus datos"
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Todas las Cotizaciones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cotizacion",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cotizacion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Cotizaciones Pendientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cotizacion/pendientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cotizacion",
+								"pendientes"
+							]
+						},
+						"description": "Retorna solo cotizaciones con estado 'pendiente'"
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Ventas (Confirmadas)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cotizacion/ventas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cotizacion",
+								"ventas"
+							]
+						},
+						"description": "Retorna solo cotizaciones con estado 'confirmada'"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Detalles de Cotización",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cotizacion/1/detalles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cotizacion",
+								"1",
+								"detalles"
+							]
+						},
+						"description": "Obtiene la lista de detalles (muebles) de una cotización"
+					},
+					"response": []
+				},
+				{
+					"name": "Calcular Total de Cotización",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cotizacion/1/total",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cotizacion",
+								"1",
+								"total"
+							]
+						},
+						"description": "Calcula el total de la cotización con todas las variantes"
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Cantidad de Mueble",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cantidad\": 5\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/cotizacion/detalles/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cotizacion",
+								"detalles",
+								"1"
+							]
+						},
+						"description": "Actualiza la cantidad de un mueble en el detalle de cotización"
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Mueble de Cotización",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cotizacion/1/detalles/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cotizacion",
+								"1",
+								"detalles",
+								"2"
+							]
+						},
+						"description": "Elimina un mueble específico de una cotización"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4. Ventas",
+			"item": [
+				{
+					"name": "Verificar Stock para Venta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/ventas/verificar-stock/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"ventas",
+								"verificar-stock",
+								"1"
+							]
+						},
+						"description": "Verifica si hay stock suficiente para confirmar una venta"
+					},
+					"response": []
+				},
+				{
+					"name": "Confirmar Venta (Con Stock)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/ventas/confirmar/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"ventas",
+								"confirmar",
+								"1"
+							]
+						},
+						"description": "Confirma una venta: cambia estado a 'confirmada' y decrementa el stock de los muebles"
+					},
+					"response": []
+				},
+				{
+					"name": "Confirmar Venta (Sin Stock - Error)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/ventas/confirmar/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"ventas",
+								"confirmar",
+								"2"
+							]
+						},
+						"description": "Intenta confirmar venta sin stock - debe retornar error 400 con mensaje de stock insuficiente"
+					},
+					"response": []
+				},
+				{
+					"name": "Cancelar Venta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/ventas/cancelar/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"ventas",
+								"cancelar",
+								"1"
+							]
+						},
+						"description": "Cancela una venta confirmada y restaura el stock"
+					},
+					"response": []
+				},
+				{
+					"name": "Calcular Total de Ingresos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/ventas/total-ingresos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"ventas",
+								"total-ingresos"
+							]
+						},
+						"description": "Calcula la suma total de todas las ventas confirmadas"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "5. Flujo Completo de Prueba",
+			"item": [
+				{
+					"name": "1. Crear Muebles",
+					"item": [
+						{
+							"name": "Crear Silla",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombreMueble\": \"Silla Moderna\",\n    \"tipo\": \"silla\",\n    \"precioBase\": 150.00,\n    \"stock\": 20,\n    \"tamanio\": \"Mediano\",\n    \"material\": \"Madera\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/muebles",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"muebles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear Mesa",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombreMueble\": \"Mesa de Comedor\",\n    \"tipo\": \"mesa\",\n    \"precioBase\": 450.00,\n    \"stock\": 10,\n    \"tamanio\": \"Grande\",\n    \"material\": \"Roble\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/muebles",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"muebles"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "2. Crear Variantes",
+					"item": [
+						{
+							"name": "Crear Normal",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombreVariante\": \"normal\",\n    \"precioAdicional\": 0.00,\n    \"descripcion\": \"Sin variante\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/variantes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"variantes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear Barniz Premium",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombreVariante\": \"barniz premium\",\n    \"precioAdicional\": 50.00,\n    \"descripcion\": \"Barniz de alta calidad\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/variantes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"variantes"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "3. Crear Cotización",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cotizacion",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cotizacion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. Agregar Sillas con Barniz",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"muebleId\": 1,\n    \"varianteId\": 2,\n    \"cantidad\": 4\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/cotizacion/1/agregar-mueble",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cotizacion",
+								"1",
+								"agregar-mueble"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5. Agregar Mesa Normal",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"muebleId\": 2,\n    \"varianteId\": 1,\n    \"cantidad\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/cotizacion/1/agregar-mueble",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cotizacion",
+								"1",
+								"agregar-mueble"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6. Ver Total Cotización",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cotizacion/1/total",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cotizacion",
+								"1",
+								"total"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7. Verificar Stock",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/ventas/verificar-stock/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"ventas",
+								"verificar-stock",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8. Confirmar Venta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/ventas/confirmar/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"ventas",
+								"confirmar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9. Ver Total Ingresos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/ventas/total-ingresos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"ventas",
+								"total-ingresos"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Flujo completo de prueba desde crear muebles hasta confirmar venta"
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}

@@ -22,18 +22,17 @@ public class DetalleCotizacion {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "variante_id")
-    private Variante variante; // Puede ser null si no tiene variante (normal)
+    private Variante variante; 
 
     @Column(name = "cantidad", nullable = false)
     private Integer cantidad;
 
     @Column(name = "precio_unitario", nullable = false, precision = 10, scale = 2)
-    private BigDecimal precioUnitario; // Precio base + precio adicional de variante
+    private BigDecimal precioUnitario; 
 
     @Column(name = "subtotal", nullable = false, precision = 10, scale = 2)
-    private BigDecimal subtotal; // precio_unitario * cantidad
+    private BigDecimal subtotal; 
 
-    // Constructores
     public DetalleCotizacion() {
     }
 
@@ -41,24 +40,6 @@ public class DetalleCotizacion {
         this.mueble = mueble;
         this.variante = variante;
         this.cantidad = cantidad;
-        calcularPrecioUnitario();
-        calcularSubtotal();
-    }
-
-    // Métodos de negocio
-    public void calcularPrecioUnitario() {
-        BigDecimal precioBase = mueble.getPrecioBase();
-        if (variante != null) {
-            this.precioUnitario = precioBase.add(variante.getPrecioAdicional());
-        } else {
-            this.precioUnitario = precioBase;
-        }
-    }
-
-    public void calcularSubtotal() {
-        if (this.precioUnitario != null && this.cantidad != null) {
-            this.subtotal = this.precioUnitario.multiply(BigDecimal.valueOf(cantidad));
-        }
     }
 
     // Getters y Setters
@@ -84,8 +65,6 @@ public class DetalleCotizacion {
 
     public void setMueble(Mueble mueble) {
         this.mueble = mueble;
-        calcularPrecioUnitario();
-        calcularSubtotal();
     }
 
     public Variante getVariante() {
@@ -94,8 +73,6 @@ public class DetalleCotizacion {
 
     public void setVariante(Variante variante) {
         this.variante = variante;
-        calcularPrecioUnitario();
-        calcularSubtotal();
     }
 
     public Integer getCantidad() {
@@ -104,7 +81,6 @@ public class DetalleCotizacion {
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
-        calcularSubtotal();
     }
 
     public BigDecimal getPrecioUnitario() {

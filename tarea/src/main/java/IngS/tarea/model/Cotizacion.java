@@ -39,19 +39,6 @@ public class Cotizacion {
         this.total = BigDecimal.ZERO;
     }
 
-    // Métodos de negocio
-    public void calcularTotal() {
-        this.total = detalles.stream()
-                .map(DetalleCotizacion::getSubtotal)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
-    }
-
-    public void agregarDetalle(DetalleCotizacion detalle) {
-        detalles.add(detalle);
-        detalle.setCotizacion(this);
-        calcularTotal();
-    }
-
     // Getters y Setters
     public Long getId() {
         return id;

@@ -8,11 +8,11 @@ COPY src ./src
 RUN mvn dependency:go-offline
 RUN mvn clean package -DskipTests 
 
-FROM openjdk:21-jdk
+FROM amazoncorretto:21
 
 WORKDIR /springApp 
 
-COPY --from=builder springApp/target/*.jar springApp.jar 
+COPY --from=builder /springApp/target/*.jar springApp.jar 
 
 EXPOSE 8080 
 
