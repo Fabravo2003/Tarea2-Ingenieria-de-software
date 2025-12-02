@@ -1,16 +1,12 @@
 services:
-  springapp: 
-    build: ./tarea 
-    volumes:
-      - ./tarea/src:/springapp/src
-      - ./tarea/pom.xml:/springapp/pom.xml
+  springapp:
+    image: fbravo03/clustertest-back:estesi
     container_name: springapp
     ports:
       - "8080:8080"
     depends_on:
       db:
         condition: service_healthy
-    restart: on-failure
 
   db:
     image: mysql:lts
@@ -18,28 +14,11 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: pruebadb 
+      MYSQL_DATABASE: pruebadb
       MYSQL_ROOT_PASSWORD: 1234
-    volumes:
-      - ./db_data:/var/lib/mysql
-    healthcheck: 
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uuser", "-ppass"]
+    healthcheck:
+      test:
+        ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p1234"]
       interval: 10s
       timeout: 5s
       retries: 5
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
-    container_name: phpmyadmin
-    environment:
-      PMA_HOST: db
-      PMA_PORT: 3306
-      MYSQL_ROOT_PASSWORD: 1234
-    ports:
-      - "8081:80"
-    depends_on:
-      - db
-    restart: unless-stopped
-
-
-

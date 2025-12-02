@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yaml
+    kompose.version: 1.37.0 (HEAD)
+  labels:
+    io.kompose.service: springapp
+  name: springapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: springapp
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose.yaml
+        kompose.version: 1.37.0 (HEAD)
+      labels:
+        io.kompose.service: springapp
+    spec:
+      containers:
+        - image: fbravo03/clustertest-back:estesi
+          name: springapp
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+      restartPolicy: Always
